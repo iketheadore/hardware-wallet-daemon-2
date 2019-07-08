@@ -61,6 +61,7 @@ script:
     make test-integration-emulator-enable-csrf ;
     fi
   - make test
+  - make release
 
 after_script:
   - kill -s KILL $(pgrep emulator)
@@ -68,19 +69,19 @@ after_script:
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
 
-before_deploy:
-  - make release
+# before_deploy:
+#   - make release
 
-deploy:
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY_ID
-    secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: $AWS_BUCKET
-    skip_cleanup: true
-    local_dir: build/release
-    upload-dir: skywallet-daemon
-    acl: public_read
-    region: $AWS_REGION
-    on:
-      repo: skycoin/hardware-wallet-daemon
-      tags: true
+# deploy:
+#   - provider: s3
+#     access_key_id: $AWS_ACCESS_KEY_ID
+#     secret_access_key: $AWS_SECRET_ACCESS_KEY
+#     bucket: $AWS_BUCKET
+#     skip_cleanup: true
+#     local_dir: build/release
+#     upload-dir: skywallet-daemon
+#     acl: public_read
+#     region: $AWS_REGION
+#     on:
+#       repo: skycoin/hardware-wallet-daemon
+#       tags: true
