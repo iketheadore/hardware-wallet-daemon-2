@@ -24,7 +24,9 @@ env:
 install:
   - if [[ $TRAVIS_OS_NAME == 'linux' && "$TRAVIS_PULL_REQUEST" == false ]]; then docker pull karalabe/xgo-latest; fi
   - if [[ $TRAVIS_OS_NAME == 'linux' && "$TRAVIS_PULL_REQUEST" == false ]]; then go get github.com/karalabe/xgo; fi
-#   - make install-linters
+  - if [[ ! -d "$GOPATH/src/github.com/skycoin/hardware-wallet-daemon" ]]; then mkdir -p $GOPATH/src/github.com/skycoin; cp -rf $TRAVIS_BUILD_DIR $GOPATH/src/github.com/skycoin/hardware-wallet-daemon; fi
+  - cd $GOPATH/src/github.com/skycoin/hardware-wallet-daemon
+  - make install-linters
 
 before_script:
   - if [[ $TRAVIS_OS_NAME == 'osx' && "$TRAVIS_PULL_REQUEST" == false ]]; then
@@ -48,7 +50,7 @@ before_script:
   - echo "PIP=$PIP";
 
 script:
-#   - make lint
+  - make lint
   - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
     make -C tmp/hardware-wallet clean ;
     make -C tmp/hardware-wallet/tiny-firmware/protob install-deps-nanopb ;
@@ -60,8 +62,8 @@ script:
     make test-integration-emulator ;
     make test-integration-emulator-enable-csrf ;
     fi
-#   - make test
-  - make release
+  - make test
+#   - make release
 
 after_script:
   - kill -s KILL $(pgrep emulator)
