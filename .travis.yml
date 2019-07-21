@@ -36,11 +36,9 @@ install:
 #   - make install-linters
 
 before_script:
-  - if [[ $TRAVIS_OS_NAME == 'osx' && "$TRAVIS_PULL_REQUEST" == false ]]; then
-    export CHECK_PATH="$(brew --prefix check)" ;
-    export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHECK_PATH}/lib" ;
-    ./ci-scripts/add-key.sh ;
-    fi
+  - export CHECK_PATH="$(brew --prefix check)"
+  - export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHECK_PATH}/lib"
+  - ./ci-scripts/add-key.sh ;
 #   - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
 #     mkdir -p tmp/hardware-wallet ;
 #     git clone --depth=1 --single-branch --branch develop https://github.com/skycoin/hardware-wallet.git
@@ -71,7 +69,8 @@ script:
 #     fi
 #   - make test
   # Build daemon
-  - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then make release; fi
+#   - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then make release; fi
+    - make release
 
 # after_script:
 #   - kill -s KILL $(pgrep emulator)
