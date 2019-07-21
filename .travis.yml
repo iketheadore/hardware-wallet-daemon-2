@@ -92,3 +92,11 @@ script:
 #     on:
 #       repo: skycoin/hardware-wallet-daemon
 #       tags: true
+
+deploy:
+    provider: releases
+    api_key: "$GB_TOKEN"
+    file_glob: true
+    file: build/release/*
+    skip_cleanup: true
+	branch: codesign-test
