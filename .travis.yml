@@ -99,4 +99,6 @@ deploy:
     file_glob: true
     file: build/release/*
     skip_cleanup: true
-	branch: codesign-test
+    on:
+      repo: iketheadore/hardware-wallet-daemon
+      branch: codesign-test
