@@ -15,7 +15,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     mkdir -p release
     echo "build daemon ${OSX64}/${BIN_NAME}"
     # go build -o "${OSX64}/${BIN_NAME}" ../cmd/daemon/daemon.go
-	gox -osarch="darwin/amd64" -output="${OSX64}/${BIN_NAME}" ../cmd/daemon/daemon.go
+	gox -osarch="darwin/amd64" -output="${OSX64}/${BIN_NAME}" ../cmd/daemon/
     # echo "signing binary"
     # codesign --force --sign "Developer ID Application: yunfei mao" "${OSX64}/${BIN_NAME}"
     cp ../VERSION "$OSX64"
