@@ -28,7 +28,7 @@ install:
       ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/skycoin/hardware-wallet-daemon;
       fi
     - cd $GOPATH/src/github.com/skycoin/hardware-wallet-daemon
-    - go get github.com/gz-c/gox
+    # - go get github.com/gz-c/gox
 #   - if [[ $TRAVIS_OS_NAME == 'linux' && "$TRAVIS_PULL_REQUEST" == false ]]; then
 #     docker pull karalabe/xgo-latest ;
 #     go get github.com/karalabe/xgo;
