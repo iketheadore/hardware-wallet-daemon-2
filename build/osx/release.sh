@@ -4,7 +4,7 @@ set -ex -o pipefail
 
 cd $(dirname $0)
 
-VERSION=`cat build/VERSION`
+VERSION=$(cat build/VERSION)
 
 INSTALLER=skyhwd-$VERSION-osx-darwin-x64.pkg
 
@@ -12,7 +12,6 @@ INSTALLER=skyhwd-$VERSION-osx-darwin-x64.pkg
 rm -rf build/uninstall
 cp -r uninstall build
 pushd "build" >/dev/null
-ls uninstall/
 pkgbuild --identifier net.skycoin.skyhwd --version=$VERSION --root uninstall/ROOT --scripts uninstall/scripts uninstall.pkg
 rm -rf uninstall
 
