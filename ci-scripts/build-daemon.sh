@@ -22,8 +22,8 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
 	mkdir -p osx/build
 	echo "copy binary file to osx/build/"
 	cp "${OSX64}/${BIN_NAME}" osx/build/
-	echo "set version: ${VERSION}"
-	echo "${VERSION}" > osx/build/VERSION
+	echo "set version: ${APP_VERSION}"
+	echo "${APP_VERSION}" > osx/build/VERSION
 	./osx/release.sh
 	cp osx/build/*.pkg release/
 	rm -rf osx/build
