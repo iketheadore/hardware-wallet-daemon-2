@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e -o pipefail
+set -xe -o pipefail
 
 XGO_TARGETS="$@"
 
