@@ -44,4 +44,4 @@ pushd "build"
 # fi
 
 # ls release/
-# popd >/dev/null
+popd >/dev/null
