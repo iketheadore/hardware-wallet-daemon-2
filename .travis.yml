@@ -36,9 +36,11 @@ install:
     - make install-linters
 
 before_script:
-  - export CHECK_PATH="$(brew --prefix check)"
-  - export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHECK_PATH}/lib"
-  - ./ci-scripts/add-key.sh ;
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+    export CHECK_PATH="$(brew --prefix check)"
+    export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHECK_PATH}/lib"
+    ./ci-scripts/add-key.sh ;
+    fi
   - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
     mkdir -p tmp/hardware-wallet ;
     git clone --depth=1 --single-branch --branch develop https://github.com/skycoin/hardware-wallet.git
