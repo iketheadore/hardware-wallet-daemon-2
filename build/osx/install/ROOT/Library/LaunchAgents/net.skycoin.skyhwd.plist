@@ -12,7 +12,7 @@
     <array>
       <string>sh</string>
       <string>-c</string>
-      <string>/Applications/Utilities/SKYHWD/skyhwd</string>
+      <string>/Applications/Utilities/SKYHWD/skyhwd > $HOME/Library/Logs/skyhwd.log 2>&1</string>
     </array>
   </dict>
 </plist>
