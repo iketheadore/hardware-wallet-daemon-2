@@ -37,8 +37,8 @@ install:
 
 before_script:
   - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-    export CHECK_PATH="$(brew --prefix check)"
-    export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHECK_PATH}/lib"
+    export CHECK_PATH="$(brew --prefix check)" ;
+    export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHECK_PATH}/lib" ;
     ./ci-scripts/add-key.sh ;
     fi
   - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
