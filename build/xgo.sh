@@ -35,11 +35,6 @@ fi
 
 COMMIT=`git rev-parse HEAD`
 
-echo "targets: $OSARCH"
-echo "dest: ${OUTPUT_DIR}"
-echo "out: $CMD"
-echo "last: ${CMDDIR}/${CMD}"
-
 xgo -targets="$OSARCH" \
 	-dest="${OUTPUT_DIR}" \
 	-out="$CMD" \

@@ -36,7 +36,7 @@ install:
   - make install-linters
 
 before_script:
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PULL_REQUEST" == false ]]; then
     export CHECK_PATH="$(brew --prefix check)" ;
     export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHECK_PATH}/lib" ;
     ./ci-scripts/add-key.sh ;
@@ -56,8 +56,8 @@ before_script:
   - echo "PATH=$PATH";
   - echo "PIP=$PIP";
 
-  - make lint
 script:
+  - make lint
   - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
     make -C tmp/hardware-wallet clean ;
     make -C tmp/hardware-wallet/tiny-firmware/protob install-deps-nanopb ;
