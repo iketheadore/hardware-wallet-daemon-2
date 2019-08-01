@@ -76,29 +76,19 @@ script:
 after_script:
   - kill -s KILL $(pgrep emulator)
 
-# notifications:
-#   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
-
-# deploy:
-#   - provider: s3
-#     access_key_id: $AWS_ACCESS_KEY_ID
-#     secret_access_key: $AWS_SECRET_ACCESS_KEY
-#     bucket: $AWS_BUCKET
-#     skip_cleanup: true
-#     local_dir: build/release
-#     upload-dir: skywallet-daemon
-#     acl: public_read
-#     region: $AWS_REGION
-#     on:
-#       repo: skycoin/hardware-wallet-daemon
-#       tags: true
+notifications:
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
 
 deploy:
-    provider: releases
-    api_key: "$GB_TOKEN"
-    file_glob: true
-    file: build/release/*
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_BUCKET
     skip_cleanup: true
+    local_dir: build/release
+    upload-dir: skywallet-daemon
+    acl: public_read
+    region: $AWS_REGION
     on:
-      repo: iketheadore/hardware-wallet-daemon
-      branch: codesign-test
+      repo: skycoin/hardware-wallet-daemon
+      tags: true
